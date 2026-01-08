@@ -1,0 +1,10 @@
+{
+  "name": "ping-me-oc",
+  "version": "1.0.0",
+  "description": "OpenCode plugin that pings you on Telegram like a founding eng homie",
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "dev": "cd server && bun run dev"
+  }
+}

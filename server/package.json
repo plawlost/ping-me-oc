@@ -1,0 +1,17 @@
+{
+  "name": "ping-me-server",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "src/index.ts",
+  "scripts": {
+    "start": "bun run src/index.ts",
+    "dev": "bun --watch src/index.ts"
+  },
+  "dependencies": {
+    "grammy": "^1.21.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.5",
+    "bun-types": "latest"
+  }
+}

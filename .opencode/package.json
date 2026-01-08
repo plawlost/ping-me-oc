@@ -1,0 +1,9 @@
+{
+  "name": "ping-me-opencode-plugin",
+  "version": "1.0.0",
+  "type": "module",
+  "dependencies": {
+    "@opencode-ai/plugin": "^1.0.0",
+    "grammy": "^1.21.1"
+  }
+}
