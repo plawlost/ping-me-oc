@@ -1,6 +1,12 @@
 import { tool } from "@opencode-ai/plugin";
 import { getChatManager } from "../plugin/pingme.js";
 
+function formatHistory(history: Array<{ role: "assistant" | "user"; message: string }>): string {
+  return history
+    .map((h) => `${h.role === "assistant" ? "you" : "user"}: ${h.message}`)
+    .join("\n");
+}
+
 export default tool({
   description:
     "Ping the user on Telegram and wait for their reply. Use when you need input, hit a blocker, or finished significant work. Can include quick reply buttons for common responses.",
@@ -24,7 +30,14 @@ export default tool({
         quickReplies: args.quick_replies,
       });
 
-      return `Chat started.\n\nChat ID: ${result.chatId}\n\nUser replied: ${result.response}\n\nUse continue_chat for follow-ups.`;
+      return [
+        `chat_id: ${result.chatId}`,
+        "",
+        "conversation:",
+        formatHistory(result.history),
+        "",
+        "use continue_chat with this chat_id for follow-ups.",
+      ].join("\n");
     } catch (error) {
       return `Failed to send message: ${error instanceof Error ? error.message : error}`;
     }

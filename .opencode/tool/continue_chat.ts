@@ -1,6 +1,12 @@
 import { tool } from "@opencode-ai/plugin";
 import { getChatManager } from "../plugin/pingme.js";
 
+function formatHistory(history: Array<{ role: "assistant" | "user"; message: string }>): string {
+  return history
+    .map((h) => `${h.role === "assistant" ? "you" : "user"}: ${h.message}`)
+    .join("\n");
+}
+
 export default tool({
   description:
     "Continue an existing Telegram chat with a follow-up message. Use after send_message to ask clarifying questions or discuss next steps.",
@@ -19,11 +25,14 @@ export default tool({
     }
 
     try {
-      const response = await manager.continueChat(args.chat_id, args.message, {
+      const result = await manager.continueChat(args.chat_id, args.message, {
         quickReplies: args.quick_replies,
       });
 
-      return `User replied: ${response}`;
+      return [
+        "conversation so far:",
+        formatHistory(result.history),
+      ].join("\n");
     } catch (error) {
       return `Failed to continue chat: ${error instanceof Error ? error.message : error}`;
     }

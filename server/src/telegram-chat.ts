@@ -132,7 +132,7 @@ export class ChatManager {
   async sendMessage(
     message: string,
     options?: { quickReplies?: string[] }
-  ): Promise<{ chatId: string; response: string }> {
+  ): Promise<{ chatId: string; response: string; history: Array<{ role: "assistant" | "user"; message: string }> }> {
     const internalChatId = `chat-${++this.currentChatId}-${Date.now()}`;
 
     const state: ChatState = {
@@ -158,7 +158,7 @@ export class ChatManager {
       const response = await this.waitForReply();
       state.conversationHistory.push({ role: "user", message: response });
 
-      return { chatId: internalChatId, response };
+      return { chatId: internalChatId, response, history: [...state.conversationHistory] };
     } catch (error) {
       this.activeChats.delete(internalChatId);
       throw error;
@@ -169,7 +169,7 @@ export class ChatManager {
     chatId: string,
     message: string,
     options?: { quickReplies?: string[] }
-  ): Promise<string> {
+  ): Promise<{ response: string; history: Array<{ role: "assistant" | "user"; message: string }> }> {
     const state = this.activeChats.get(chatId);
     if (!state) throw new Error(`No active chat: ${chatId}`);
 
@@ -188,7 +188,7 @@ export class ChatManager {
     const response = await this.waitForReply();
     state.conversationHistory.push({ role: "user", message: response });
 
-    return response;
+    return { response, history: [...state.conversationHistory] };
   }
 
   async sendUpdate(message: string): Promise<void> {
