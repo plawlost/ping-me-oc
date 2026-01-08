@@ -8,7 +8,10 @@ OpenCode plugin that pings you on Telegram. No calls, no noise - just a quick me
 
 ### 1. Create Bot
 
-Open Telegram, find **@BotFather**, send `/newbot`. Copy the token.
+Open Telegram, find **@BotFather**, send `/newbot`. 
+- First it asks for a display name (anything works, e.g. "My Ping Bot")
+- Then it asks for a username (must end in `bot`, e.g. "mypingme_bot")
+- Copy the token it gives you
 
 ### 2. Get Your Chat ID
 
