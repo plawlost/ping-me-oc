@@ -15,7 +15,7 @@ Open Telegram, find **@BotFather**, send `/newbot`.
 
 ### 2. Get Your Chat ID
 
-Find **@userinfobot**, send `/start`. Copy your ID.
+Find **@userinfobot** on Telegram, send `/start`. It replies with your ID - copy the number after "Id:".
 
 ### 3. Configure
 
