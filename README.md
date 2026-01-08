@@ -70,6 +70,17 @@ continue_chat({
 })
 ```
 
+### end_chat
+
+Clear conversation history when done.
+
+```
+end_chat({
+  chat_id: "chat-1-...",
+  message: "cool, talk later"
+})
+```
+
 ## Config
 
 | Variable | Required | Default | Description |

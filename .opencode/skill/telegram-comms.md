@@ -22,6 +22,7 @@ Ping the user on Telegram when needed. Like a founding eng homie who knows when 
 `send_message` - ping and wait for reply
 `send_update` - one-way notification (no wait)
 `continue_chat` - follow-up in existing conversation
+`end_chat` - clear conversation history when done
 
 ## Quick replies
 
